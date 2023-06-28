@@ -1,5 +1,5 @@
 #root {
-  width: 90%;
+  width: 99%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -8,12 +8,12 @@
   text-align: center;
 }
 
-h1{
+h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
 }
 
-.charts{
+.charts {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -22,13 +22,26 @@ h1{
   width: 100%;
 }
 
-.charts > * {
+.echarts-for-react {
+  width: 100%;
+  padding: 10px 0;
+}
+
+.chart {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  width: 40%;
-  height: 300px;
+  width: 47%;
+  /* height: 450px; */
   padding: 10px 0;
-  margin: 1rem;
+  margin: 5px;
+}
+
+
+@media screen and (max-width: 768px) {
+  .chart {
+    width: 100%;
+  }
 }

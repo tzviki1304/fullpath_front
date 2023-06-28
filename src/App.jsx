@@ -1,18 +1,22 @@
 import { useState , useEffect } from "react";
 import dataJson from "./assets/data.json";
 import "./App.css";
-
-import { Impressions, Cost, Conversions, Clicks } from "./charts";
+import Line  from "./charts/Line";
+import Bar  from "./charts/Bar";
 
 function App() {
-  const [timestamp , setTimestamp] = useState([]);
+  const [times , setTimes] = useState([]);
   const [impressions , setImpressions] = useState([]);
   const [clicks  , setClicks ] = useState([]);
   const [cost , setCost] = useState([]);
   const [conversions  , setConversions ] = useState([]);
 
   useEffect(() => {
-    setTimestamp(dataJson.data.map((item) => item.timestamp));
+    setTimes(dataJson.data.map((item) => {
+      let time = item.timestamp.split(" ")[0].slice(2);
+      time = time.split("-").reverse().join("/");
+      return time
+    } ));
     setImpressions(dataJson.data.map((item) => item.impressions));
     setClicks(dataJson.data.map((item) => item.clicks));
     setCost(dataJson.data.map((item) => item.cost));
@@ -23,10 +27,10 @@ function App() {
     <>
       <h1>Website Metrics</h1>
       <div className="charts">
-        <Impressions className="chart" timestamp={timestamp} impressions={impressions} />
-        <Clicks className="chart" timestamp={timestamp} clicks={clicks} />
-        <Cost className="chart" timestamp={timestamp} cost={cost} />
-        <Conversions className="chart" timestamp={timestamp} conversions={conversions} />
+        <Line  xData={times} yData={impressions}  title="impressions"  />
+        <Bar  xData={times} yData={clicks}  title="clicks"  />
+        <Line  xData={times} yData={cost}  title="cost"  />
+        <Bar  xData={times} yData={conversions}  title="conversions"  />
       </div>
     </>
   );
