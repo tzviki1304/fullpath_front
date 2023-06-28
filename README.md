@@ -26,4 +26,4 @@ To get started with Fullpath Front, follow these steps:
 
    This will launch the Fullpath Front application locally, and you can access it in your web browser 
 
-Alternatively, you can visit our website directly at [www.fullpath-front.com](https://fullpath-front.netlify.app) to experience Fullpath online without setting up the project locally.
+Alternatively, you can visit our website directly at [https://full-front.netlify.app](https://fullpath-front.netlify.app) to experience Fullpath online without setting up the project locally.
