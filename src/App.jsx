@@ -1,35 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState , useEffect } from "react";
+import dataJson from "./assets/data.json";
+import "./App.css";
+
+import { Impressions, Cost, Conversions, Clicks } from "./charts";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [timestamp , setTimestamp] = useState([]);
+  const [impressions , setImpressions] = useState([]);
+  const [clicks  , setClicks ] = useState([]);
+  const [cost , setCost] = useState([]);
+  const [conversions  , setConversions ] = useState([]);
+
+  useEffect(() => {
+    setTimestamp(dataJson.data.map((item) => item.timestamp));
+    setImpressions(dataJson.data.map((item) => item.impressions));
+    setClicks(dataJson.data.map((item) => item.clicks));
+    setCost(dataJson.data.map((item) => item.cost));
+    setConversions(dataJson.data.map((item) => item.conversions));
+  },[]);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h1>Website Metrics</h1>
+      <div className="charts">
+        <Impressions className="chart" timestamp={timestamp} impressions={impressions} />
+        <Clicks className="chart" timestamp={timestamp} clicks={clicks} />
+        <Cost className="chart" timestamp={timestamp} cost={cost} />
+        <Conversions className="chart" timestamp={timestamp} conversions={conversions} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
